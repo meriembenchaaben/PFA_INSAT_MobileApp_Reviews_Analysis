@@ -5,7 +5,6 @@
 # %tensorflow_version 2.x 
 import tensorflow as tf
 
-print("test")
 print(tf.__version__)
 
 from flask import Flask, jsonify, request
@@ -197,7 +196,7 @@ loaded_vec = CountVectorizer(decode_error="replace", vocabulary=pickle.load(open
 
 
 # tfidfReview = transformer.fit_transform(loaded_vec.fit_transform(np.array([review])))
-def reviewProcessing (review) :
+def reviewPrediction(review) :
     review = review.lower()
     reviews = re.split(',|and|\.|&', review)
     review = preprocessing(review)
@@ -242,7 +241,7 @@ class PredictionController(Resource):
         # status code
 
         review = request.json["subject"] + " " + request.json["body"]
-        Topics = reviewProcessing(review)
+        Topics = reviewPrediction(review)
         return {
             "topics": Topics
         }
