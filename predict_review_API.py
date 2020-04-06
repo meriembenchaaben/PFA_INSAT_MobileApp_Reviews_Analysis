@@ -81,7 +81,7 @@ def remove_emoji(string):
     return emoji_pattern.sub(r'', string)
 
 
-import emoji
+#import emoji
 from nltk.corpus import stopwords
 
 
@@ -174,7 +174,7 @@ def f1_loss(y_true, y_pred):
     return 1 - K.mean(f1)
 
 
-model = keras.models.load_model("ModelNoBugsFinal.h5",
+model = keras.models.load_model("models/ModelNoBugsFinal.h5",
                                 custom_objects={'f1': f1, 'precision': precision, 'recall': recall})
 
 classes = ['Advertising', 'Battery', 'Camera & Photos', 'Complexity',
@@ -192,7 +192,7 @@ classes = ['Advertising', 'Battery', 'Camera & Photos', 'Complexity',
 # print (review)
 
 transformer = TfidfTransformer()
-loaded_vec = CountVectorizer(decode_error="replace", vocabulary=pickle.load(open("feature.pkl", "rb")))
+loaded_vec = CountVectorizer(decode_error="replace", vocabulary=pickle.load(open("models/feature.pkl", "rb")))
 
 
 # tfidfReview = transformer.fit_transform(loaded_vec.fit_transform(np.array([review])))
